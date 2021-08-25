@@ -2,6 +2,8 @@ import 'package:example/date_picker_page.dart';
 import 'package:example/multiple_link_picker_page.dart';
 import 'package:example/multiple_picker_page.dart';
 import 'package:example/style_picker_page.dart';
+import 'package:example/test_page.dart';
+import 'package:example/test_picker_page.dart';
 import 'package:example/widget/my_app_bar.dart';
 import 'package:example/widget/my_text.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
         _itemView('多列选择器(无联动)', MultiplePickerPage()),
         _itemView('多列选择器（联动）', MultipleLinkPickerPage()),
         _itemView('日期选择器', DatePickerPage()),
+        _itemView('日期选择器2', DateTimeInlineChoose()),
+        _itemView('日期选择器3', TestDatePickerPage()),
         _itemView('内置样式', StylePickerPage()),
       ],
     );

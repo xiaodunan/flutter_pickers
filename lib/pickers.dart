@@ -207,6 +207,10 @@ class Pickers {
     // 解析是否有对应数据
     DateItemModel dateItemModel = DateItemModel.parse(mode);
 
+    debugPrint('longer   maxDate>>> ${maxDate}');
+    debugPrint('longer   minDate>>> ${minDate}');
+    debugPrint('longer   selectDate>>> ${selectDate}');
+
     if (maxDate == null) maxDate = PDuration(year: 2100);
     if (minDate == null) minDate = PDuration(year: 1900);
 

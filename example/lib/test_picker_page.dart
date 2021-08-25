@@ -4,12 +4,12 @@ import 'package:example/widget/my_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DatePickerPage extends StatefulWidget {
+class TestDatePickerPage extends StatefulWidget {
   @override
-  _DatePickerPageState createState() => _DatePickerPageState();
+  _TestDatePickerPageState createState() => _TestDatePickerPageState();
 }
 
-class _DatePickerPageState extends State<DatePickerPage> {
+class _TestDatePickerPageState extends State<TestDatePickerPage> {
   String stateText = '';
 
   final divider = Divider(height: 1, indent: 20);

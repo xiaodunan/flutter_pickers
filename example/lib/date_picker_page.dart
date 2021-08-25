@@ -46,6 +46,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
           _item('年', DateMode.Y),
           _item('月日时分秒', DateMode.MDHMS),
           _item('时分秒', DateMode.HMS),
+          _item2('时分', DateMode.HM),
           _item('月日', DateMode.MD),
           _item('月', DateMode.S),
           _item('仿计时器', DateMode.HMS),
@@ -83,6 +84,44 @@ class _DatePickerPageState extends State<DatePickerPage> {
               } else {
                 _onClickItem(model);
               }
+            },
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              MyText(PicketUtil.strEmpty(selectData[model]) ? '暂无' : selectData[model],
+                  color: Colors.grey, rightpadding: 18),
+              rightIcon
+            ]),
+          ),
+        ),
+        divider,
+      ],
+    );
+  }
+
+  Widget _item2(title, model) {
+    return Column(
+      children: [
+        Container(
+          color: Colors.white,
+          child: ListTile(
+            title: Text(title),
+            onTap: () {
+              Pickers.showDatePicker(
+                context,
+                mode: model,
+                suffix: Suffix.normal(),
+
+                // selectDate: PDuration(month: 2),
+                // minDate: PDuration(year: 2020, month: 2, day: 10),
+                // maxDate: PDuration(second: 22),
+
+                // selectDate: PDuration(hour: 18, minute: 36, second: 36),
+                // minDate: PDuration(hour: 12, minute: 38, second: 3),
+                // maxDate: PDuration(hour: 12, minute: 40, second: 36),
+                onConfirm: (p) {
+                  print('longer >>> 返回数据：$p');
+                },
+                // onChanged: (p) => print(p),
+              );
             },
             trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
               MyText(PicketUtil.strEmpty(selectData[model]) ? '暂无' : selectData[model],
@@ -151,41 +190,46 @@ class _DatePickerPageState extends State<DatePickerPage> {
   }
 
   void _onClickItem2() {
-    Widget _cancelButton = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-      margin: const EdgeInsets.only(left: 22),
-      decoration:
-          BoxDecoration(border: Border.all(color: Colors.white, width: 1), borderRadius: BorderRadius.circular(4)),
-      child: MyText('取消', color: Colors.white, size: 14),
-    );
-
-    Widget _commitButton = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-      margin: const EdgeInsets.only(right: 22),
-      decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(4)),
-      child: MyText('确认', color: Colors.white, size: 14),
-    );
-
-    // 头部样式
-    Decoration headDecoration = BoxDecoration(
-        color: Colors.grey[800],
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)));
-
-    Widget title = Center(child: MyText('倒计时', color: Colors.white, size: 14));
-
-    var pickerStyle = PickerStyle(
-        cancelButton: _cancelButton,
-        commitButton: _commitButton,
-        headDecoration: headDecoration,
-        title: title,
-        textColor: Colors.white,
-        backgroundColor: Colors.grey[800]);
+    // Widget _cancelButton = Container(
+    //   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+    //   margin: const EdgeInsets.only(left: 22),
+    //   decoration: BoxDecoration(
+    //       border: Border.all(color: Colors.white, width: 1),
+    //       borderRadius: BorderRadius.circular(4)),
+    //   child: MyText('取消', color: Colors.white, size: 14),
+    // );
+    //
+    // Widget _commitButton = Container(
+    //   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+    //   margin: const EdgeInsets.only(right: 22),
+    //   decoration: BoxDecoration(
+    //       color: Theme.of(context).primaryColor,
+    //       borderRadius: BorderRadius.circular(4)),
+    //   child: MyText('确认', color: Colors.white, size: 14),
+    // );
+    //
+    // // 头部样式
+    // Decoration headDecoration = BoxDecoration(
+    //     color: Colors.grey[800],
+    //     borderRadius: BorderRadius.only(
+    //         topLeft: Radius.circular(8), topRight: Radius.circular(8)));
+    //
+    // Widget title = Center(child: MyText('倒计时', color: Colors.white, size: 14));
+    //
+    // var pickerStyle = PickerStyle(
+    //     cancelButton: _cancelButton,
+    //     commitButton: _commitButton,
+    //     headDecoration: headDecoration,
+    //     title: title,
+    //     textColor: Colors.white,
+    //     backgroundColor: Colors.grey[800]);
 
     Pickers.showDatePicker(
       context,
       mode: DateMode.HMS,
-      suffix: Suffix(hours: ' 小时', minutes: ' 分钟', seconds: ' 秒'),
-      pickerStyle: pickerStyle,
+      minDate: PDuration(hour: 18, minute: 46, second: 12),
+      suffix: Suffix(hours: ' 时', minutes: ' 分', seconds: ' 秒'),
+      // pickerStyle: pickerStyle,
       onConfirm: (p) {
         print('longer >>> 返回数据：$p');
       },
