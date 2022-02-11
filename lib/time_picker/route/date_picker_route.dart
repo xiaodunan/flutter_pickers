@@ -770,8 +770,9 @@ class _PickerState extends State<_PickerContentView> {
               _setPicker(dateType, selectIndex),
           childCount: _dateTimeData.getListByName(dateType).length,
           itemBuilder: (_, index) {
-            String text =
-                '${_dateTimeData.getListByName(dateType)[index]}${widget.route.suffix?.getSingle(dateType)}';
+            String text = (dateType==DateType.Hour||dateType==DateType.Minute||dateType==DateType.Second)
+                ?'${_dateTimeData.getListByName(dateType)[index].toString().padLeft(2,'0')}${widget.route.suffix?.getSingle(dateType)}'
+                :'${_dateTimeData.getListByName(dateType)[index]}${widget.route.suffix?.getSingle(dateType)}';
             return Align(
                 alignment: Alignment.center,
                 child: Text(text,
